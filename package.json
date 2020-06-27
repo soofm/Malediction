@@ -8,6 +8,7 @@
     "start": "npm run compile && electron ./dist/main"
   },
   "dependencies": {
+    "fast-glob": "^3.2.4",
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {

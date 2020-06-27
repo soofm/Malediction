@@ -4,6 +4,12 @@ body {
 
 #install-dir {
     background: white;
+    margin-left: 4px;
     border-radius: 2px;
     padding: 4px;
+    visibility: hidden;
+}
+
+#install-dir.show {
+    visibility: visible;
 }
