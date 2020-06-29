@@ -1,0 +1,43 @@
+:root {
+  --green-color: green;
+  --red-color: red;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4a4a;
+  color: white;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+#install-dir-input {
+  background: white;
+  margin: 0;
+  width: 100%;
+  border-radius: 2px;
+  padding: 5px;
+  cursor: text;
+}
+
+#install-dir-status {
+  visibility: hidden;
+  padding: 5px 0;
+}
+
+#install-dir-status[data-install-status='valid'] {
+  visibility: visible;
+}
+
+#install-dir-status[data-install-status='invalid'] {
+  visibility: visible;
+  color: var(--red-color);
+}
+

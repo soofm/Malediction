@@ -1,12 +1,19 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
+import * as path from 'path'
+import { selectInstallDirectory } from './Startup'
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
 let mainWindow: BrowserWindow
 
-function createMainWindow () {
-  const window = new BrowserWindow({ webPreferences: { nodeIntegration: true } })
+function createMainWindow (): BrowserWindow {
+  const window = new BrowserWindow({
+    webPreferences: {
+      contextIsolation: true,
+      preload: path.resolve(app.getAppPath(), 'preload.js')
+    }
+  })
 
-  window.loadFile('../../assets/index.html')
+  void window.loadFile('./index.html')
 
   window.on('closed', () => {
     mainWindow = null
@@ -40,4 +47,8 @@ app.on('activate', () => {
 // create main BrowserWindow when electron is ready
 app.on('ready', () => {
   mainWindow = createMainWindow()
+})
+
+ipcMain.on('select-install-directory-message', (event, args) => {
+  void selectInstallDirectory().then(result => event.reply('select-install-directory-reply', result))
 })
