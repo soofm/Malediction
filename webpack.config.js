@@ -6,14 +6,14 @@ const commonConfig = () => ({
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        test: /\.ts(x?)?$/,
         use: 'ts-loader',
         include: /src/
       }
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.js', '.ts', '.tsx']
   },
   output: {
     filename: '[name].js',
@@ -35,8 +35,21 @@ const preloadConfig = {
 
 const rendererConfig = {
   ...commonConfig(),
-  entry: { renderer: './src/renderer' },
+  entry: {
+    renderer: './src/renderer/index.tsx'
+  },
   target: 'electron-renderer',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        react: {
+          chunks: 'initial',
+          name: 'react',
+          test: /react/
+        }
+      }
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/assets/index.html'

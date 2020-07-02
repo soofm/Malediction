@@ -1,7 +1,7 @@
 import { dialog } from 'electron'
-import * as fs from 'fs'
-import * as path from 'path'
-import * as fg from 'fast-glob'
+import fs from 'fs'
+import path from 'path'
+import fg from 'fast-glob'
 import { InstallDirectory, InstallType } from '../common'
 
 export async function selectInstallDirectory (): Promise<InstallDirectory> {

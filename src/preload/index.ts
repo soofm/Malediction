@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer } = require("electron")
+import { contextBridge, ipcRenderer } from 'electron'
 
 const inChannels = ['select-install-directory-message']
 const outChannels = ['select-install-directory-reply']
